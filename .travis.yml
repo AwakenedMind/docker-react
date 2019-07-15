@@ -1,0 +1,11 @@
+sudo: required
+# need a copy of docker 
+services:
+  - docker
+
+# build docker with docker cli command for automation
+before_install:
+  - docker build -t rob/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true rob/docker-react npm run test -- --coverage
