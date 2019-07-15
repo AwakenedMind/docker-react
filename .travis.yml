@@ -9,3 +9,17 @@ before_install:
 
 script:
   - docker run -e CI=true rob/docker-react npm run test 
+
+#TravicCI has lots of providers
+deploy: 
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docke-react"
+  environment: "DockeReact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-208624173923"
+  bucket_path: "docke-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
