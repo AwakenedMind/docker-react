@@ -13,8 +13,9 @@ RUN npm run build
 
 # Second Phase of build
 FROM nginx
+
+EXPOSE 80
 # Want to copy the build folding in our working directory into nginx's folder that auto starts
 COPY --from=builder /app/build /usr/share/nginx/html
 
-EXPOSE 80
 
